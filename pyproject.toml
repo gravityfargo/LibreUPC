@@ -1,0 +1,61 @@
+[tool.poetry]
+name = "libreupc"
+version = "0.0.0"
+description = ""
+authors = ["Nathan Price <gravityfargo@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+Flask = "^3.0.3"
+flask-sqlalchemy = "^3.1.1"
+flask-migrate = "^4.0.7"
+flask-login = "^0.6.3"
+
+[tool.poetry.group.dev.dependencies]
+pylint = "^3.2.7"
+pytest = "^8.3.3"
+pytest-cov = "^5.0.0"
+isort = "^5.13.2"
+black = "^24.8.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.pylint.main]
+output-format = "colorized"
+
+[tool.pylint.format]
+max-line-length = "120"
+
+[tool.pylint."messages control"]
+disable = [
+    "C0103", # invalid-name
+    "C0114", # missing-module-docstring
+    "C0115", # missing-class-docstring
+    "C0116", # missing-function-docstring
+    "C0413", # wrong-import-position
+    "C0415", # import-outside-toplevel
+    "R0902", # too-many-instance-attributes
+    "R0903", # too-few-public-methods
+    "R0913", # too-many-arguments
+    "W0105", # string statement has no effect
+    "W0201", # attribute-defined-outside-init
+    "W0613", # unused-argument
+    "W0718", # broad-exception-caught
+    "W0511", # fixme
+
+]
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+
+[tool.pyright]
+reportAttributeAccessIssue = false
+
+[tool.pytest.ini_options]
+addopts = "--cov=libreupc --cov-report=xml --no-header --maxfail=1 --capture=no -rA"
+testpaths = ["tests"]
